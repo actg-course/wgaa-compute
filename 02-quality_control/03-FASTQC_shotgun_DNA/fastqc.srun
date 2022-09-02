@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=fastqc-shotgun
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=10:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=6GB
+
+export SINGULARITY_CACHEDIR=/scidas/instruction/HORT503-Fall2022/.singularity_cache/
+module add singularity
+
+singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
+  fastqc -t 2 JPQN_PCRfree_1_1_GGCTTAAG_Apple_WA38_I1177_L4_R1.fastq.gz JPQN_PCRfree_1_1_GGCTTAAG_Apple_WA38_I1177_L4_R2.fastq.gz
