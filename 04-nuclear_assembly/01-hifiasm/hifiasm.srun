@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --account=ficklin_class
+#SBATCH --job-name=hifiasm
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=24
+#SBATCH --mem=20GB
+
+module add singularity
+
+singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa-hifiasm:0.16.1 \
+  hifiasm -o WA_38.asm -t 24  \
+    --h1 JNQM_OmniC_NA_NA_CTTGTCGA_Apple_Cosmic_Crisp-Apple_WA_38_Cosmic_OmniC_I1161L1_L1_40x_R1.fastq \
+    --h2 JNQM_OmniC_NA_NA_CTTGTCGA_Apple_Cosmic_Crisp-Apple_WA_38_Cosmic_OmniC_I1161L1_L1_40x_R2.fastq \
+    WA_38.PacBio_HiFi.sf12_reads.fq
