@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=yahs-hap2
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=2GB
+
+module add singularity
+
+singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa-yahs:1.2a.2-0 \
+  yahs -o WA_38-hap2 WA_38.asm.hic.hap2.p_ctg.fa WA_38.asm.hic.hap2.p_ctg_vs_HiC.sorted.bam
