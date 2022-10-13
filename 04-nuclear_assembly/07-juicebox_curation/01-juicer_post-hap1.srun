@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=yahs-juicer-post-hap1
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=4GB
+
+module add singularity
+
+singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa-yahs:1.2a.2-0 \
+  juicer post \
+    -o WA_38-hap1-JBAT \
+   WA_38-hap1-JBAT.review.assembly \
+   WA_38-hap1-JBAT.liftover.agp \
+   WA_38.asm.hic.hap1.p_ctg.fa
