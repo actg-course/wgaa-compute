@@ -24,3 +24,4 @@ After the indexing has completed we can then run YaHS for scaffolding.
 03-yahs-hap1.srun
 04-yahs-hap2.srun
 ```
+--Add instructions here for running the assemblathon script to get stats on the assembly --
