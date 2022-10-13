@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=juicer_tools-hap1
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=96GB
+
+module add singularity
+
+singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa-juicer:1.22.01 \
+  java -Xmx96G -jar /usr/local/bin/juicer/juicer_tools_1.22.01.jar pre \
+      WA_38-hap1-JBAT.txt WA_38-hap1-JBAT.hic <(cat WA_38-hap1-JBAT.log  | grep PRE_C_SIZE | awk '{print $2" "$3}')
+
+
+
+
+     
