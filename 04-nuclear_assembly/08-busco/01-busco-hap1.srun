@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=busco-hap1
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=8GB
+
+module add singularity
+
+# Remove any previous run of busco
+rm -rf WA_38-hap1-busco
+
+singularity exec -B ${PWD} docker://ezlabgva/busco:v5.4.3_cv1 \
+  busco  \
+    -i WA_38-hap1-JBAT.FINAL.fa \
+    -m genome \
+    -o WA_38-hap1-busco \
+    -l eudicots_odb10 \
+    -c 16
+    
