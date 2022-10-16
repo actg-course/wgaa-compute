@@ -1,5 +1,5 @@
-Misassembly correction
-######################
+# Misassembly correction
+
 Download the following files to a Windows or Mac computer so that they can be loaded into Juicebox.
 
 * `../06-hic_maps/WA_38-hap1-JBAT.hic`: The Hi-C map file for haplotype #1
@@ -24,8 +24,7 @@ Export from Juicebox the updated "assembly" file and "liftover" file and name th
 
 Upload those files to this directory for post processing. 
 
-Post-processing
-###############
+# Post-processing
 
 Next we need to generate an updated FASTA file of our assembly. We can use the YaHS 
 `juicer post` command to do this. Note: YaHS has named its scripts "juicer" in a nod
