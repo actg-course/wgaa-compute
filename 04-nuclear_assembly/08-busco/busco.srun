@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --partition=ficklin_class
 #SBATCH --partition=ficklin_class
-#SBATCH --job-name=busco-hap1
+#SBATCH --job-name=busco
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
 #SBATCH --mail-type=ALL
@@ -16,13 +16,13 @@
 module add singularity
 
 # Remove any previous run of busco
-rm -rf WA_38-hap1-busco
+rm -rf WA_38-busco
 
 singularity exec -B ${PWD} docker://ezlabgva/busco:v5.4.3_cv1 \
   busco  \
-    -i WA_38-hap1-JBAT.FINAL.fa \
+    -i busco_input_files \
     -m genome \
-    -o WA_38-hap1-busco \
+    -o WA_38-busco \
     -l eudicots_odb10 \
     -c 16
     
