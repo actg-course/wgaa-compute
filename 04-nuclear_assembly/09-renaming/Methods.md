@@ -96,14 +96,10 @@ make sure we keep our scaffolds connected to the appropriate haplotype. We will
 simply add an A or B onto the end of the scaffold names. The following does this:
 ```bash
 # Haplotype A
-cmd="perl -pi -e 's/^(>scaffold_\d+)/\1A/g' Malus-domestica-WA_38_hapA-genome-v1.0.a1.fa"
-echo $cmd
-eval $cmd
+perl -pi -e 's/^(>scaffold_\d+)/\1A/g' Malus-domestica-WA_38_hapA-genome-v1.0.a1.fa
 
 # Haplotype B
-cmd="perl -pi -e 's/^(>scaffold_\d+)/\1B/g' Malus-domestica-WA_38_hapB-genome-v1.0.a1.fa"
-echo $cmd
-eval $cmd
+perl -pi -e 's/^(>scaffold_\d+)/\1B/g' Malus-domestica-WA_38_hapB-genome-v1.0.a1.fa
 ```
 
 As a sanity check, we will make sure everything got renamed. This code will
