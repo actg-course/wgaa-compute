@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=mummer-nucmer-hap1
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=4GB
+
+module add singularity
+
+singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa-mummer:3.23 \
+  nucmer -maxmatch -l 100 -c 500 WA_38-hap1-JBAT.FINAL.fa Gala_diploid_v2.chr.hapA.fa -prefix WA_38_hap1-vs-Gala_diploid_v2
