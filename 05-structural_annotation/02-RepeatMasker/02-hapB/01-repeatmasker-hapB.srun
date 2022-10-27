@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=repeatmasker-hapB
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=8GB
+
+module add singularity
+
+singularity exec -B ${PWD} --no-home docker://systemsgenetics/actg-wgaa-repeatmasker:4.1.2.p1 \
+  RepeatMasker \
+    -pa 20 \
+    -s \
+    -lib Malus-domestica-WA_38_hapB-genome-v1.0.a1.fa.mod.EDTA.TElib.fa \
+    -gff \
+    Malus-domestica-WA_38_hapB-genome-v1.0.a1.fa
