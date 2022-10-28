@@ -13,7 +13,7 @@ ln -s ../../01-EDTA/01-hapA/Malus-domestica-WA_38_hapA-genome-v1.0.a1.fa.mod.EDT
 Next, we also need a sym link to the final genome assembly FASTA file.
 
 ```bash
-ln -s ../../../04-nuclear_assembly/09-renaming/Malus-domestica-WA_38_hapA-genome-v1.0.a1.fa
+ln -s ../../../../04-nuclear_assembly/09-renaming/Malus-domestica-WA_38_hapA-genome-v1.0.a1.fa
 
 Next run RepeatMasker
 
