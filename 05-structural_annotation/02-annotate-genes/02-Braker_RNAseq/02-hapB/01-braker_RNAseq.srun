@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=braker_RNAseq_hapB
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=1-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=50GB
+
+module add singularity
+
+rm -rf braker config
+
+singularity exec --no-home -B ${PWD} -B ${PWD}/temp_home:/home/${USER} docker://systemsgenetics/actg-wgaa-braker:2.1.6 \
+  /bin/bash braker_RNAseq.sh
