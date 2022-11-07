@@ -15,7 +15,8 @@ export AUGUSTUS_SCRIPTS_PATH=/opt/conda/bin
 export GENEMARK_PATH=`pwd`/gmes_linux_64_4
 
 braker.pl \
-  --genome=Malus-domestica-WA_38_hapA-genome-v1.0.a1.Nmasked.fa \
+  --genome=Malus-domestica-WA_38_hapA-genome-v1.0.a1.softmasked.fa \
+  --softmasking \
   --prot_seq=proteins.fa \
   --cores 20 \
 

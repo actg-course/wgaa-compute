@@ -2,7 +2,7 @@
 First link to the hard masked genome assembly:
 
 ```bash
-ln -s ../../../01-annotate_repeats/02-RepeatMasker/02-hapB/Malus-domestica-WA_38_hapB-genome-v1.0.a1.Nmasked.fa
+ln -s ../../../01-annotate_repeats/02-RepeatMasker/02-hapB/Malus-domestica-WA_38_hapB-genome-v1.0.a1.softmasked.fa
 ```
 
 There are a varity of protein files in FASTA format in the `../../../../01-input_data/proteins` folder.  We
