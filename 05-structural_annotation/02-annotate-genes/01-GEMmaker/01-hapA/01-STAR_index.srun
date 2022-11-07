@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=STAR-index-hapA
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=6
+
+module add singularity
+
+# For compatibility, use the STAR image recommended by GEMmaker
+singularity exec -B ${PWD} https://depot.galaxyproject.org/singularity/star:2.7.9a--h9ee0642_0 \
+  STAR \
+    --runThreadN 6 \
+    --runMode genomeGenerate \
+    --genomeDir Malus-domestica-WA_38_hapA-genome-v1.0.a1.indexed \
+    --genomeFastaFiles Malus-domestica-WA_38_hapA-genome-v1.0.a1.fa \
+    --genomeSAindexNbases 12

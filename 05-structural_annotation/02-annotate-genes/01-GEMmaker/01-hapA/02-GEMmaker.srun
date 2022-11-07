@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=GEMmaker-hapA
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+
+module add singularity nextflow/21.10.6 java/1.8.0
+
+nextflow run systemsgenetics/gemmaker \
+  -resume \
+  -profile kamiak,singularity \
+  --pipeline star \
+  --sras SRAs.txt \
+  --input "../../../../01-input_data/Illumina/RNAseq/reduced/*{1,2}.fastq" \
+  --star_index_dir Malus-domestica-WA_38_hapA-genome-v1.0.a1.indexed \
+  --star_gtf_file Malus-domestica-WA_38_hapA-genome-v1.0.a1.gtf \
+  --star_keep_bam \
+  --max_cpus 100
