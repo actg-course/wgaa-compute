@@ -1,7 +1,7 @@
 First, create a sym link to the HapA assembly
 
 ```bash
-ln -s ../../../../04-nuclear_assembly/09-renaming/Malus-domestica-WA_38_hapB-genome-v1.0.a1.fa
+ln -s ../../../../04-nuclear_assembly/10-reorient/Malus-domestica-WA_38_hapB-genome-v1.0.a1.fa
 ```
 
 GEMmaker can process both local and remote (NCBI SRA) RNA-seq files.  It will generate

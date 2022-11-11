@@ -2,7 +2,7 @@
 First, create a symbolic link to our finalized genome assembly FASTA file.  
 
 ```bash
-ln -s ../../../../04-nuclear_assembly/09-renaming/Malus-domestica-WA_38_hapB-genome-v1.0.a1.fa
+ln -s ../../../../04-nuclear_assembly/10-reorient/Malus-domestica-WA_38_hapB-genome-v1.0.a1.fa
 ```
 
 Next, we need the Gala v2 diploid sequences for use with EDTA. We will get those from GDR.
