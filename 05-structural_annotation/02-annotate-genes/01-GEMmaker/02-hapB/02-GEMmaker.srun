@@ -12,6 +12,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 
+module use /scidas/research/modulefiles
 module add singularity nextflow/21.10.6 java/1.8.0
 
 nextflow run systemsgenetics/gemmaker \
