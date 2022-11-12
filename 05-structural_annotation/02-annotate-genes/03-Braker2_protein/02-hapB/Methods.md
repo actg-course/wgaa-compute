@@ -5,10 +5,13 @@ First link to the hard masked genome assembly:
 ln -s ../../../01-annotate_repeats/02-RepeatMasker/02-hapB/Malus-domestica-WA_38_hapB-genome-v1.0.a1.softmasked.fa
 ```
 
-There are a varity of protein files in FASTA format in the `../../../../01-input_data/proteins` folder.  We
+There are a variety of protein files in FASTA format in the `../../../../01-input_data` folder.  We
 want to combine all of these into a single file for use by Braker.
+
 ```bash
-cat ../../../../01-input_data/proteins/*/*.{fa,faa,fasta,pep} > proteins.fa
+cat ../../../../01-input_data/Rosaceae_proteinDB/*.{fa,faa,fasta} > proteins.fa
+cat ../../../../01-input_data/TRINITY_assembly/proteins/*.pep >> proteins.fa
+cat ../../../../01-input_data/TRINITY_assembly/proteins/WA_38_transcripts.cleaned.pep >> proteins.fa
 ```
 
 # GeneMark Setup
