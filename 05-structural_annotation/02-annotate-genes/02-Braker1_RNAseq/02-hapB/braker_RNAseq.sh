@@ -30,7 +30,7 @@ export GUSHR_PATH=`pwd`/GUSHR
 # set the environment variable for it
 export GENEMARK_PATH=`pwd`/gmes_linux_64_4
 
-bams=`ls ../../01-GEMmaker/01-hapB/results/Samples/*/*.sorted.bam | perl -p -e 's/\n/,/g' | perl -p -e s'/,$//'`
+bams=`ls ../../01-GEMmaker/02-hapB/results/Samples/*/*.sorted.bam | perl -p -e 's/\n/,/g' | perl -p -e s'/,$//'`
 
 braker.pl \
   --genome=Malus-domestica-WA_38_hapB-genome-v1.0.a1.softmasked.fa \
