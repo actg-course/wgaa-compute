@@ -27,6 +27,7 @@ with open(args.gtf, "r") as gtf_file:
         if (ftype == "gene"):
           attrs['ID'] = attrstr
         elif (ftype == "transcript"):
+          ftype = "mRNA"
           attrs['ID'] = attrstr
           attrs['Parent'] = re.sub(r"(g\d+)\.t\d+", r'\1', attrstr)
           counts = {}
