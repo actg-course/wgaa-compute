@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=files-hapA
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=1-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+
+
+./generate_structural_files.py \
+    --genome Malus-domestica-WA_38_hapA-genome-v1.0.a1.fa \
+    --genes braker_combined_renamed.hapA.gff \
+    --repeats Malus-domestica-WA_38_hapA-genome-v1.0.a1.fa.out \
+    --species Maldo \
+    --cultivar cc \
+    --annot_version 1 \
+    --assem_version 1  \
+    --source WSU_HORT403_503
