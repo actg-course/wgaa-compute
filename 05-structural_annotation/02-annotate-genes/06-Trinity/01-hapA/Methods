@@ -1,0 +1,16 @@
+First combine all of the BAM files into a single file
+
+```bash
+sbatch 01-samtools_merge.srun
+```
+
+Second, make sure the combined BAM file is sorted
+
+```bash
+sbatch 02-samtools_sort.srun
+```
+
+Now run Trinity to create the reference-guided assembly
+```bash
+03-Trinity_reference_guided.srun
+```

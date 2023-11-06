@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --partition=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=Trinity_hapA
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=1-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=25GB
+
+module add singularity
+
+singularity exec --no-home -B ${PWD} docker://systemsgenetics/actg-wgaa-trinity:2.13.2 \
+  Trinity \
+    --genome_guided_bam WA_38_all_combined.sorted.bam \
+    --genome_guided_max_intron 10000 \
+    --max_memory 25G --CPU 20 

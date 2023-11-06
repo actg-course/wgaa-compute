@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --partition=ficklin_class
 #SBATCH --account=ficklin_class
-#SBATCH --job-name=multiqc
+#SBATCH --job-name=fastqc-Hi-C
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
 #SBATCH --mail-type=ALL
@@ -11,8 +11,9 @@
 #SBATCH --ntasks=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
+#SBATCH --mem=6GB
 
 module add singularity
 
-singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa-multiqc:1.13a \
-  multiqc .
+singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa-fastqc:0.11.9 \
+  fastqc -t 2 JNQM_OmniC_NA_NA_CTTGTCGA_Apple_Cosmic_Crisp-Apple_WA38_Cosmic_OmniC_I1161L1_L1_R1.fastq JNQM_OmniC_NA_NA_CTTGTCGA_Apple_Cosmic_Crisp-Apple_WA38_Cosmic_OmniC_I1161L1_L1_R1.fastq

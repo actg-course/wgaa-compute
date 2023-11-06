@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --partition=ficklin_class
-#SBATCH --partition=ficklin_class
+#SBATCH --account=ficklin_class
 #SBATCH --job-name=fastp
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
@@ -12,10 +12,9 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=16
 
-export SINGULARITY_CACHEDIR=/scidas/instruction/HORT503-Fall2022/.singularity_cache/
 module add singularity
 
-singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
+singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa-fastp:0.23.2 \
   fastp \
     -w 16 \
     --disable_quality_filtering \

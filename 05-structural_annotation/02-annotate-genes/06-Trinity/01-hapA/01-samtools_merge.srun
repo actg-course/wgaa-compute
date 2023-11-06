@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH --account=ficklin_class
+#SBATCH --partition=ficklin_class
+#SBATCH --job-name=samtools-merge-hap1
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=stephen.ficklin@wsu.edu
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=20
+
+module add singularity
+
+bams=`ls ../../01-GEMmaker/01-hapA/results/Samples/*/*.sorted.bam | perl -p -e 's/\n/ /g'`
+
+singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa-samtools:1.15.1 \
+  samtools merge --threads 20 -o WA_38_all_combined.bam ${bams}
